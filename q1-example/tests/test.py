@@ -2,26 +2,32 @@ import unittest
 from gradescope_utils.autograder_utils.decorators import weight, visibility
 from submission import *
 
+# Solution for the question being tested
+# Not always necessary, but can be useful
 def func_solution(n):
     pass
 
 class TestHW_Q_(unittest.TestCase):
-    tests_run = -2  # offset for intro and summary test
+    tests_run = -2  # Offset for intro and summary "test"s
     tests_passed = 0
 
+    # Run before each test method
     def setUp(self):
         self.__class__.tests_run += 1
         self._test_passed = False
 
+    # Run after each test method
     def tearDown(self):
         if self._test_passed:
             self.__class__.tests_passed += 1
 
+    # Displays a summary of the test results to the grader
     @visibility("hidden")
     @weight(0)
     def test_ZZ_summary(self):
         print(f"Tests passed: {self.__class__.tests_passed}/{self.__class__.tests_run}")
 
+    # Displays an introduction to the student and grader
     @visibility("visible")
     @weight(0)
     def test_A1_intro(self):
