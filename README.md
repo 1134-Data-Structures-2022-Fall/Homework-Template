@@ -15,6 +15,16 @@
   * Old autograders before Fall 2022 are located in `autograder_zips/pre_fall_2022/`
   * Testing the autograder as student code can be found in `autograder_zips/autograder_student_tests/`
 
+### File Explanation
+
+* `template/` directory. This directory contains common files that are shared across all the test directories.
+  * `requirements.txt`: python file listing any modules that need to be installed. `gradescope-utils` is required to be included.
+  * `run_autograder`: shell script that is run on each student submission.
+  * `run_tests.py`: called by the `run_autograder` shell script. Runs student code against the test files and outputs the results in the expected `.json` format.
+  * `setup.sh`: run once automatically before executing any of the other scripts.
+* `export_autograders.py`
+  * Helper script that automatically creates the zip files that are uploaded to Gradescope for each question. May need small adjustment in the `QUESTION_DIRECTORIES` variable to select the correct question directories.
+
 ## Test Structure
 
 Look in `q1-example/` for examples.
@@ -33,3 +43,10 @@ Test methods are named using the following format:
   * Tests not visible to the student. Generally contains a set of random tests and edge cases for the question.
 * ZZ - summary
   * Testing summary displayed to graders.
+
+## More Information
+
+Helpful resources to learn more about the autograder.
+
+* Official documentation from [Gradescope](https://gradescope-autograders.readthedocs.io)
+* They also provide a GitHub [repo example](https://github.com/gradescope/autograder_samples/tree/master/python)
