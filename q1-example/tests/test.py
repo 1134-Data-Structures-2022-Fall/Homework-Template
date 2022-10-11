@@ -1,5 +1,5 @@
 import unittest
-from gradescope_utils.autograder_utils.decorators import weight, visibility
+from gradescope_utils.autograder_utils.decorators import weight, visibility, number
 from submission import *
 
 # Solution for the question being tested
@@ -15,6 +15,7 @@ class TestHW_Q_(unittest.TestCase):
     def setUp(self):
         self.__class__.tests_run += 1
         self._test_passed = False
+        self.longMessage = False  # Remove default assertion messages
 
     # Run after each test method
     def tearDown(self):
@@ -22,15 +23,17 @@ class TestHW_Q_(unittest.TestCase):
             self.__class__.tests_passed += 1
 
     # Displays a summary of the test results to the grader
+    @number("0")
     @visibility("hidden")
     @weight(0)
     def test_ZZ_summary(self):
         print(f"Tests passed: {self.__class__.tests_passed}/{self.__class__.tests_run}")
 
     # Displays an introduction to the student and grader
+    @number("1")
     @visibility("visible")
     @weight(0)
-    def test_A1_intro(self):
+    def test_intro(self):
         from inspect import cleandoc
         INTRO_STRING = cleandoc("""
         Basic info:
@@ -45,9 +48,10 @@ class TestHW_Q_(unittest.TestCase):
         """)
         print(INTRO_STRING)
 
+    @number("10")
     @visibility("visible")
     @weight(0)
-    def test_B1_given_example(self):
+    def test_given_example(self):
         print("Testing with given example: func(10).")
         expected_output = func_solution(100)
         student_output = func(100)
@@ -55,9 +59,10 @@ class TestHW_Q_(unittest.TestCase):
         print("Test Passed: given test case passed.")
         self._test_passed = True
 
+    @number("20")
     @visibility("visible")
     @weight(0)
-    def test_C1_mystery_number(self):
+    def test_mystery_number(self):
         print("Testing with mystery number.")
         expected_output = func_solution(100)
         student_output = func(100)
@@ -65,9 +70,10 @@ class TestHW_Q_(unittest.TestCase):
         print("Test Passed: mystery test case passed.")
         self._test_passed = True
 
+    @number("30")
     @visibility("hidden")
     @weight(0)
-    def test_Z1_10_random_numbers(self):
+    def test_10_random_numbers(self):
         print("Testing 10 random numbers between 1 and 1000000.")
         import random
         for _ in range(10):
