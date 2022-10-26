@@ -2,6 +2,8 @@
 
 # Set up autograder files
 
+rm /autograder/source/submission.py
+
 cp /autograder/submission/*.py /autograder/source/submission.py
 
 cd /autograder/source

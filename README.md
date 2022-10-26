@@ -27,7 +27,7 @@
 
 ## Test Structure
 
-Look in `q1-example/` for examples.
+Look in `q1/` for examples.
 
 Tests are executed in alphabetical order. Test methods must start with `test` to be run by the Gradescope autograder.
 

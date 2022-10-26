@@ -20,4 +20,6 @@ for dir in QUESTION_DIRECTORIES:
         for file in TEMPLATE_FILES:  # Archive template files
             archive.write(f"{TEMPLATE_DIRECTORY}/{file}", arcname=file)  # Archive test files
         for file in pathlib.Path(dir).rglob("*.py"):  # Recursively search for python files
+            if file.stem == "submission":  # skip submission.py
+                continue
             archive.write(file, arcname=file.relative_to(dir))
